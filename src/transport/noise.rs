@@ -100,6 +100,6 @@ impl Transport for NoiseTransport {
         let conn = NoiseStream::handshake(conn, self.builder().build_initiator()?)
             .await
             .with_context(|| "Failed to do noise handshake")?;
-        return Ok(conn);
+        Ok(conn)
     }
 }
