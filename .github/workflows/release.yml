@@ -92,7 +92,7 @@ jobs:
           default: true
       
       - name: Install OpenSSL
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest' && !contains(matrix.target, 'musl')
         run: sudo apt-get install pkg-config libssl-dev
       - name: Install Musl Tools
         if: contains(matrix.target, 'musl')
