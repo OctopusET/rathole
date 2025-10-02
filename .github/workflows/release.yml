@@ -41,6 +41,14 @@ jobs:
             target: armv7-unknown-linux-musleabihf
             exe: rathole
             cross: true
+          - os: ubuntu-latest
+            target: riscv64gc-unknown-linux-gnu
+            exe: rathole
+            cross: true
+          - os: ubuntu-latest
+            target: riscv64gc-unknown-linux-musl
+            exe: rathole
+            cross: true
 
           - os: macos-latest
             target: x86_64-apple-darwin
@@ -99,7 +107,7 @@ jobs:
         # Upx may not support some platforms. Ignore the errors
         continue-on-error: true
         # Disable upx for mips. See https://github.com/upx/upx/issues/387
-        if: matrix.os == 'ubuntu-latest' && !contains(matrix.target, 'mips')
+        if: matrix.os == 'ubuntu-latest' && !contains(matrix.target, 'mips') && !contains(matrix.target, 'riscv64')
         uses: crazy-max/ghaction-upx@v1
         with:
           version: v4.0.2
